@@ -3,277 +3,102 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Website Sekolah SMK</title>
+  <title>Auto Deploy</title>
 
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: "Poppins", Arial, sans-serif;
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial, sans-serif;
     }
 
-    body {
-      min-height: 100vh;
-      background: linear-gradient(135deg, #0f172a, #1e1b4b, #312e81);
-      color: white;
-      overflow-x: hidden;
+    body{
+      height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      background:linear-gradient(135deg,#0f172a,#1e293b,#312e81);
+      color:white;
+      overflow:hidden;
     }
 
-    nav {
-      width: 100%;
-      padding: 22px 8%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: fixed;
-      top: 0;
-      background: rgba(15, 23, 42, 0.6);
-      backdrop-filter: blur(15px);
-      z-index: 10;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
+    .card{
+      width:90%;
+      max-width:500px;
+      padding:40px;
+      border-radius:24px;
+      background:rgba(255,255,255,0.08);
+      backdrop-filter:blur(12px);
+      border:1px solid rgba(255,255,255,0.1);
+      text-align:center;
+      box-shadow:0 20px 50px rgba(0,0,0,0.4);
     }
 
-    .logo {
-      font-size: 24px;
-      font-weight: 700;
-      color: #38bdf8;
+    h1{
+      font-size:42px;
+      margin-bottom:15px;
     }
 
-    nav ul {
-      display: flex;
-      gap: 25px;
-      list-style: none;
+    h1 span{
+      color:#38bdf8;
     }
 
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: 500;
-      opacity: 0.85;
+    p{
+      color:#cbd5e1;
+      line-height:1.7;
+      margin-bottom:25px;
     }
 
-    nav a:hover {
-      color: #38bdf8;
+    .status{
+      display:inline-block;
+      padding:12px 20px;
+      border-radius:12px;
+      background:#38bdf8;
+      color:#0f172a;
+      font-weight:bold;
     }
 
-    .hero {
-      min-height: 100vh;
-      padding: 130px 8% 60px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 40px;
+    .circle{
+      position:absolute;
+      width:250px;
+      height:250px;
+      border-radius:50%;
+      background:#38bdf8;
+      filter:blur(120px);
+      opacity:0.3;
     }
 
-    .content {
-      max-width: 600px;
+    .one{
+      top:-50px;
+      right:-50px;
     }
 
-    .badge {
-      display: inline-block;
-      padding: 8px 16px;
-      background: rgba(56, 189, 248, 0.15);
-      border: 1px solid rgba(56, 189, 248, 0.4);
-      color: #7dd3fc;
-      border-radius: 999px;
-      margin-bottom: 20px;
-      font-size: 14px;
-    }
-
-    h1 {
-      font-size: 56px;
-      line-height: 1.1;
-      margin-bottom: 20px;
-    }
-
-    h1 span {
-      color: #38bdf8;
-    }
-
-    p {
-      font-size: 18px;
-      line-height: 1.7;
-      color: #cbd5e1;
-      margin-bottom: 30px;
-    }
-
-    .btn-group {
-      display: flex;
-      gap: 15px;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      padding: 14px 24px;
-      border-radius: 12px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: 0.3s;
-    }
-
-    .btn-primary {
-      background: #38bdf8;
-      color: #020617;
-    }
-
-    .btn-primary:hover {
-      background: #0ea5e9;
-      transform: translateY(-3px);
-    }
-
-    .btn-secondary {
-      border: 1px solid rgba(255,255,255,0.2);
-      color: white;
-    }
-
-    .btn-secondary:hover {
-      background: rgba(255,255,255,0.1);
-      transform: translateY(-3px);
-    }
-
-    .card {
-      width: 360px;
-      padding: 30px;
-      background: rgba(255,255,255,0.08);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 24px;
-      box-shadow: 0 25px 60px rgba(0,0,0,0.35);
-      animation: float 4s ease-in-out infinite;
-    }
-
-    .card h2 {
-      margin-bottom: 20px;
-      color: #7dd3fc;
-    }
-
-    .feature {
-      padding: 15px;
-      margin-bottom: 12px;
-      background: rgba(255,255,255,0.08);
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .feature strong {
-      display: block;
-      margin-bottom: 5px;
-    }
-
-    .circle {
-      position: absolute;
-      width: 250px;
-      height: 250px;
-      background: #38bdf8;
-      filter: blur(130px);
-      opacity: 0.35;
-      border-radius: 50%;
-      z-index: -1;
-    }
-
-    .circle.one {
-      top: 150px;
-      right: 100px;
-    }
-
-    .circle.two {
-      bottom: 50px;
-      left: 100px;
-      background: #a78bfa;
-    }
-
-    @keyframes float {
-      0%, 100% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(-18px);
-      }
-    }
-
-    @media (max-width: 900px) {
-      nav ul {
-        display: none;
-      }
-
-      .hero {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      h1 {
-        font-size: 42px;
-      }
-
-      .card {
-        width: 100%;
-      }
-
-      .btn-group {
-        justify-content: center;
-      }
+    .two{
+      bottom:-50px;
+      left:-50px;
+      background:#8b5cf6;
     }
   </style>
 </head>
 
 <body>
+
   <div class="circle one"></div>
   <div class="circle two"></div>
 
-  <nav>
-    <div class="logo">SMK Digital</div>
-    <ul>
-      <li><a href="#">Beranda</a></li>
-      <li><a href="#">Profil</a></li>
-      <li><a href="#">Jurusan</a></li>
-      <li><a href="#">Kontak</a></li>
-    </ul>
-  </nav>
+  <div class="card">
+    <h1>Auto <span>Deploy</span></h1>
 
-  <section class="hero">
-    <div class="content">
-      <div class="badge">🚀 Auto Deploy Berhasil</div>
+    <p>
+      Website berhasil diperbarui otomatis menggunakan
+      GitHub Webhook dan Ubuntu Server.
+    </p>
 
-      <h1>
-        Website Sekolah <span>SMK Modern</span>
-      </h1>
-
-      <p>
-        Website ini berhasil dideploy otomatis menggunakan GitHub, Webhook,
-        Flask, dan Ubuntu Server. Setiap perubahan yang dipush ke repository
-        akan langsung diperbarui ke server.
-      </p>
-
-      <div class="btn-group">
-        <a href="#" class="btn btn-primary">Lihat Website</a>
-        <a href="#" class="btn btn-secondary">Tentang Project</a>
-      </div>
+    <div class="status">
+      Deploy Berhasil 🚀
     </div>
+  </div>
 
-    <div class="card">
-      <h2>Status Deployment</h2>
-
-      <div class="feature">
-        <strong>GitHub</strong>
-        Repository aktif dan siap digunakan
-      </div>
-
-      <div class="feature">
-        <strong>Webhook</strong>
-        Menerima event push otomatis
-      </div>
-
-      <div class="feature">
-        <strong>Server</strong>
-        Auto pull berjalan sukses
-      </div>
-
-      <div class="feature">
-        <strong>CI/CD</strong>
-        Deployment otomatis berhasil
-      </div>
-    </div>
-  </section>
 </body>
 </html>
